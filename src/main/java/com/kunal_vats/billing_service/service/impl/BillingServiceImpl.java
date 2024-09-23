@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import static com.kunal_vats.billing_service.constants.Constants.CustomerServiceURI;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -59,7 +61,7 @@ public class BillingServiceImpl implements BillingService {
 
     public boolean customerExists(Long customerId) {
         try{
-            ResponseEntity<Object> responseEntity = restTemplate.exchange(String.format("http://localhost:8081/api/customer/%s", customerId),
+            ResponseEntity<Object> responseEntity = restTemplate.exchange(String.format(CustomerServiceURI, customerId),
                     HttpMethod.GET,
                     null,
                     new ParameterizedTypeReference<Object>() {
